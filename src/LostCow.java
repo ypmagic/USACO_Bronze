@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 /**
  * Created by Young Park
  * For practice
@@ -62,8 +67,25 @@ public class LostCow {
     }
 
     public static void main(String[] args) {
-        LostCow a = new LostCow(3, 6);
-        System.out.println(a.findDistance());
+        Scanner sc;
+        for (int i = 1; i <= 10; i++) {
+            File input = new File(i + ".in");
+            try {
+                int farmerTemp;
+                int cowTemp;
+                sc = new Scanner(input);
+                farmerTemp = sc.nextInt();
+                cowTemp = sc.nextInt();
+                LostCow a = new LostCow(farmerTemp, cowTemp);
+                // output
+                PrintWriter pw = new PrintWriter(i + ".out");
+                int distance = a.findDistance();
+                pw.println(distance);
+                pw.close();
+            } catch (FileNotFoundException g) {
+                System.out.println("File does not exist.");
+            }
+        }
     }
 
 }
